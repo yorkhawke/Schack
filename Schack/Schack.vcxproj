@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
+    <ClInclude Include="PieceHeader.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />

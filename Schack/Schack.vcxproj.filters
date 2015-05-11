@@ -112,5 +112,8 @@
     <ClInclude Include="Square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PieceHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,17 +1,28 @@
 // Includes
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
+using namespace sf;
 
-class System
+class SystemC
 {
 private:
 	//Attributes
-
+	RenderWindow window;
 public:
 	//Functions
-	System();
-	~System();
-	void Window();
+	SystemC();
+	~SystemC();
+	void startWindow();
+	void displayWin();
+	void winClear();
+	void CloseWin();
 	void Draw();
-	//Get/Set functions
+	void Et();
+	bool isO();
 };
+
+#endif
