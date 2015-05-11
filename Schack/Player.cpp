@@ -21,7 +21,7 @@ void Player::ResetPieces(int i)
 {
   
 }
-void Player:.PlayTurn()
+void Player::PlayTurn()
 {
   
 }

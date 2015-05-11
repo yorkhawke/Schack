@@ -4,7 +4,6 @@
 
 #include "Piece.h"
 #include <SFML\Graphics.hpp>
-
 class Rook :public Piece
 {
 private:

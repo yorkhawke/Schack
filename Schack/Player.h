@@ -16,7 +16,7 @@ public:
 	//Functions
 	Player(int,int,string,bool);
 	~Player();
-	void ResetPieces();
+	void ResetPieces(int i);
 	void PlayTurn();
 	//Get/Set functions
 	int GetID();
