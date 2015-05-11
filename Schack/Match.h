@@ -1,6 +1,9 @@
 // Includes
 #include <iostream>
 
+#include "System.h"
+#include "Input.h"
+
 
 class Match
 {
