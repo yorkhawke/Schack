@@ -16,13 +16,6 @@ public:
 	//Functions
 	SystemC();
 	~SystemC();
-	void startWindow();
-	void displayWin();
-	void winClear();
-	void CloseWin();
-	void Draw();
-	void Et();
-	bool isO();
 };
 
 #endif

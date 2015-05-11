@@ -74,6 +74,21 @@
     <None Include="sfml-window-2.dll">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\SFML-2.3\bin\sfml-audio-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\SFML-2.3\bin\sfml-graphics-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\SFML-2.3\bin\sfml-network-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\SFML-2.3\bin\sfml-system-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\SFML-2.3\bin\sfml-window-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -115,5 +130,10 @@
     <ClInclude Include="PieceHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="OptimusPrinceps.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

@@ -8,17 +8,17 @@
 #include "Input.h"
 #include "Player.h"
 
+using namespace sf;
 class Match
 {
 private:
-	
 	//Attributes
 
 public:
 	//Functions
 	Match();
 	~Match();
-	void PlayMatch();
+	void PlayMatch(Player p1,Player p2,int nrM);
 	//Get/Set functions
 };
 #endif

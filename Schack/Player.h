@@ -1,4 +1,6 @@
 // Includes
+#ifndef PLAYER_H
+#define PLAYER_H
 #include <iostream>
 #include <string.h>
 
@@ -29,3 +31,4 @@ public:
 	bool GetConcede();
 	void SetConcede(bool);
 };
+#endif
