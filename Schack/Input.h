@@ -1,3 +1,6 @@
+#ifndef INPUT_H_
+#define INPUT_H_
+
 // Includes
 #include <iostream>
 
@@ -13,3 +16,4 @@ public:
 	~Input();
 	//Get/Set functions
 };
+#endif
