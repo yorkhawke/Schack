@@ -6,11 +6,12 @@
 
 #include "System.h"
 #include "Input.h"
-
+#include "Player.h"
 
 class Match
 {
 private:
+	
 	//Attributes
 
 public:

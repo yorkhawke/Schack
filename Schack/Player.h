@@ -11,9 +11,10 @@ private:
 	int NrOfWins;
 	string Name;
 	bool Concede;
-	Player();
+
 public:
 	//Functions
+	Player();
 	Player(int,int,string,bool);
 	~Player();
 	void ResetPieces(int i);
