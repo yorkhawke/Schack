@@ -59,5 +59,13 @@ bool Piece::GetTargeted()
 }
 void Piece::SetTargeted(bool o)
 {
-	Targeted=o;
+	if (o)
+	{
+		sprite.setColor(Color::Red);
+	}
+	else
+	{
+		sprite.setColor(Colour);
+	}
+	Targeted = o;
 }
