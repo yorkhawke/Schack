@@ -1,29 +1,23 @@
-// Includes
 #ifndef SQUARE_H_
 #define SQUARE_H_
-#include<SFML\Graphics.hpp>
-#include <iostream>
-
+#include <SFML\Graphics.hpp>
 using namespace sf;
 class Square
 {
 private:
-	//Attributes
 	Vector2f Position;
-	bool Occupied;
-	Square();
+	Sprite sprite;
+	bool IsOccupied;
 
-	 
 public:
-	//Functions
-
-	Square(Vector2f,bool);
+	Square();
+	Square(Vector2f, Sprite, bool);
 	~Square();
-	//Get/Set functions
-	bool GetOccupied();
-	void SetOccupied(bool);
 	Vector2f GetPosition();
-	void SetPosition(Vector2f);
+	Sprite GetTexture();
+	bool GetIsOccupied();
+	void SetIsOccupied(bool);
+
 };
 
 #endif
