@@ -29,6 +29,7 @@ Vector2f Piece::GetPosition()
 void Piece::SetPosition(Vector2f pos)
 {
 	Position = pos;
+	sprite.setPosition(pos);
 }
 bool Piece::GetState()
 {
