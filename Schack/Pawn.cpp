@@ -36,7 +36,7 @@ Vector2f Pawn::Move(Vector2f pos)
 			if (abs((int)Position.y - y * 80) == 80)
 			{
 				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80)+10;
+				Position.y = (float)(y * 80);
 				sprite.setPosition(Position);
 			}
 		}
