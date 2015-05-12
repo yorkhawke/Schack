@@ -19,6 +19,7 @@ Piece::Piece(Vector2f pos, bool s, Sprite sp, Color c)
 	sprite= sp;
 	sprite.setPosition(pos);
 	Colour = c;
+	Targeted=false;
 }
 
 Vector2f Piece::GetPosition()
