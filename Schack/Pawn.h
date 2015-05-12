@@ -7,17 +7,10 @@ class Pawn : public Piece
 {
 private:
 	Pawn();
+	bool firstmove;
 public:
 	~Pawn();
 	Pawn(Vector2f, bool, Sprite, Color);
-	Vector2f GetPosition();
-	void SetPosition(Vector2f);
-	bool GetState();
-	void SetState(bool);
-	Sprite GetTexture();
-	void SetTexture(Sprite);
-	Color GetColour();
-	void SetColour(Color);
-	Vector2f Move();
+	Vector2f Move(Vector2f);
 };
 #endif
