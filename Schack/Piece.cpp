@@ -53,3 +53,11 @@ void Piece::SetColour(Color c)
 {
 	Colour = c;
 }
+bool Piece::GetTargeted()
+{
+	return Targeted;
+}
+void Piece::SetTargeted(bool o)
+{
+	Targeted=o;
+}
