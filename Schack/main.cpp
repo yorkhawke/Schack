@@ -1,13 +1,13 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <stdio.h>
 #include "System.h"
 #include "Match.h"
 #include "Player.h"
 
-int SCRWIDTH = 650;
-int SCRHEIGHT = 640;
-
-Text menu();
+int SCRWIDTH = 800;
+int SCRHEIGHT = 660;
 
 int main()
 {
@@ -15,77 +15,60 @@ int main()
 	RenderWindow window;
 	Player p1;
 	Player p2;
-
-	Text text,text1,text11,text2,text3;
-	Font font;
+	Texture backTex,PlayB,CloseB;
 	window.create(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "Schack");
 
-	if (!font.loadFromFile("OptimusPrinceps.ttf"))
-	{
-		std::cout << "error";
+	//Texture 
+	if (!backTex.loadFromFile("BackC.png"))
+		return 1;
+	Sprite backSprite(backTex);
 
-	}
-	else
-	{
-		//Meny
-		text.setFont(font);
-		text.setString("Welcome\n	To\nSchack Simulator 3000\n---------Meny---------\n1.SetPlayers\n2.ShowScore\n3.PlayMatch\n4.Close");
-		text.setCharacterSize(40);
-		text.setColor(sf::Color::White);
-		FloatRect textRect = text.getLocalBounds();
-		text.setOrigin(textRect.width / 2, textRect.height / 2);
-		text.setPosition(Vector2f(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f));
+	if (!PlayB.loadFromFile("Play.png"))
+		return 1;
+	Sprite PlaySprite(PlayB);
 
-		//choice 1
-		text1.setFont(font);
-		text11.setFont(font);
-		text1.setString("Please enter Player 1 name:");
-		text11.setString("Please enter Player 2 name");
-		text1.setCharacterSize(30);
-		text11.setCharacterSize(30);
-		text1.setOrigin(textRect.width / 2, textRect.height / 2);
-		text1.setPosition(Vector2f(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f));
-		text11.setOrigin(textRect.width / 2, textRect.height / 2);
-		text11.setPosition(Vector2f(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f));
+	if (!CloseB.loadFromFile("Close.png"))
+		return 1;
+	Sprite CloseSprite(CloseB);
 
-	}
+	FloatRect backBound = backSprite.getGlobalBounds();
+	FloatRect CloseBound = CloseSprite.getGlobalBounds();
+	FloatRect PlayBound = PlaySprite.getGlobalBounds();
 
+	backSprite.setOrigin(backBound.width / 2.0f, backBound.height / 2.0f);
+	CloseSprite.setOrigin(CloseBound.width / 2.0f, CloseBound.height / 2.0f);
+	PlaySprite.setOrigin(PlayBound.width / 2.0f, PlayBound.height / 2.0f);
+
+	backSprite.setPosition(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f);
+	PlaySprite.setPosition(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f);
+	CloseSprite.setPosition(SCRWIDTH / 2.0f, ((SCRHEIGHT / 2.0f)+60.0f));
 
 	while (window.isOpen())
 	{
 		Event event;
+		Mouse mousePos;
+
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window.close();
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Num1))
-		{
-			window.clear();
-			window.draw(text1);
-			window.display();
-			string P1name;
-			scanf("%s", P1name);
-			window.clear();
-			window.draw(text11);
-			window.display();
-			string P2name;
-			scanf("%s", P2name);
-		}
-		else if (Keyboard::isKeyPressed(Keyboard::Num2))
+		if (PlaySprite.getGlobalBounds().contains(mousePos.getPosition(window).x, mousePos.getPosition(window).y)&&Mouse::isButtonPressed(Mouse::Left))
 		{
 
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Num3))
-		{
 
-		}
-		else if (Keyboard::isKeyPressed(Keyboard::Num4))
+		if (CloseSprite.getGlobalBounds().contains(mousePos.getPosition(window).x, mousePos.getPosition(window).y) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			return 0;
 		}
+
 		window.clear();
-		window.draw(text);
+
+		window.draw(backSprite);
+		window.draw(PlaySprite);
+		window.draw(CloseSprite);
+
 		window.display();
 	}
 	return 0;

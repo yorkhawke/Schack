@@ -136,4 +136,15 @@
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="BackC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Close.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Play.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

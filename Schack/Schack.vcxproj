@@ -200,6 +200,11 @@
   <ItemGroup>
     <Font Include="OptimusPrinceps.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="BackC.png" />
+    <Image Include="Close.png" />
+    <Image Include="Play.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
