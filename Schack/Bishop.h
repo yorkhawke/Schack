@@ -18,7 +18,7 @@ public:
 	void SetTexture(Sprite);
 	Color GetColour();
 	void SetColour(Color);
-	Vector2f Move();
+	Vector2f Move(Vector2f);
 };
 
 
