@@ -1,6 +1,7 @@
 // Includes
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "PieceHeader.h"
 #include <iostream>
 #include <string.h>
 
@@ -13,7 +14,7 @@ private:
 	int NrOfWins;
 	string Name;
 	bool Concede;
-
+	Piece* pieces[16];
 public:
 	//Functions
 	Player();
