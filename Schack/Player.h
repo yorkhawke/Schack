@@ -31,5 +31,6 @@ public:
 	void SetName(string);
 	bool GetConcede();
 	void SetConcede(bool);
+	Sprite GetPieceTexture(int);
 };
 #endif
