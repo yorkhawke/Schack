@@ -7,8 +7,10 @@
 #include "System.h"
 #include "Input.h"
 #include "Player.h"
+#include "Square.h"
 
 using namespace sf;
+
 class Match
 {
 private:

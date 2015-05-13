@@ -33,5 +33,6 @@ public:
 	bool GetConcede();
 	void SetConcede(bool);
 	Sprite GetPieceTexture(int);
+	void RenderPieces(RenderWindow*);
 };
 #endif

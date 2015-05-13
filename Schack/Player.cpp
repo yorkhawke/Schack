@@ -34,6 +34,7 @@ Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
   pieces[13] = new Bishop(Vector2f(400, 560), false, sprite, Color::White);
   pieces[14] = new King(Vector2f(240, 560), false, sprite, Color::White);
   pieces[15] = new Queen(Vector2f(320, 560), false, sprite, Color::White);
+
 }
 void Player::ResetPieces(bool col)
 {
@@ -58,7 +59,7 @@ void Player::ResetPieces(bool col)
 		pos = Vector2f(0,80);
 		for (int i = 0; i < 16; i++)
 		{
-			pieces[i]->SetPostion(pos);
+			pieces[i]->SetPosition(pos);
 			pieces[i]->SetColour(Color::Black);
 			pos.x += 80;
 			if (i == 8)
@@ -156,4 +157,8 @@ bool Player::GetConcede()
 void Player::SetConcede(bool c)
 {
   this->Concede = c;
+}
+void Player::RenderPieces(RenderWindow* win)
+{
+
 }
