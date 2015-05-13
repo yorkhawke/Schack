@@ -12,19 +12,24 @@ Match::~Match()
 
 void Match::PlayMatch(RenderWindow* win)
 {
+
 	Sprite Sp1, Sp2;
+	Sprite sprite;
+	Texture tex;
+	if (!tex.loadFromFile("Pieces2.png"))
+	{
+
+	}
+
+	Sp1.setTexture(tex);
+	Sp2.setTexture(tex);
 	Player p1(1, 0, "Player 1", false, Sp1);
 	Player p2(2, 0, "Player 2", false, Sp2);
 
 	p1.ResetPieces(true);
 	p2.ResetPieces(false);
 
-	Texture tex;
-	if (!tex.loadFromFile("Pieces2.png"))
-	{
 
-	}
-	Sprite sprite;
 	sprite.setTexture(tex);
 	sprite.setTextureRect(IntRect(480, 0, 80, 80));
 	Vector2f pos(0, 0);
@@ -62,21 +67,41 @@ void Match::PlayMatch(RenderWindow* win)
 		}
 	}
 
-	win->clear();
-	for (int i = 0; i < 64; i++)
-	{
-		win->draw(Board[i].GetTexture());
-	}
-	win->display();
-
-	while (game)
+	Event ev;
+	bool turn=true;
+	while (win->isOpen())
 	{
 
-		p1.PlayTurn(win);
+		while (win->pollEvent(ev))
+		{
+			if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
+				win->close();
 
-		p2.PlayTurn(win);
+			win->clear();
+			for (int i = 0; i < 64; i++)
+			{
+				win->draw(Board[i].GetTexture());
+			}
+			p1.RenderPieces(win);
+			p2.RenderPieces(win);
+			win->display();
+
+
+			if (turn)
+			{
+				p1.PlayTurn(win);
+				turn = false;
+			}
+			else
+			{
+				p2.PlayTurn(win);
+				turn = true;
+			}
+		}
 
 	}
 
 
 }
+
+

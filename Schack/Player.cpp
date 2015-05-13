@@ -160,5 +160,9 @@ void Player::SetConcede(bool c)
 }
 void Player::RenderPieces(RenderWindow* win)
 {
+	for (int i = 0; i < 16; i++)
+	{
+		win->draw(pieces[i]->GetTexture());
+	}
 
 }

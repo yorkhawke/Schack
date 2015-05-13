@@ -41,7 +41,7 @@ void Piece::SetState(bool s)
 }
 Sprite Piece::GetTexture()
 {
-	return sprite;
+	return this->sprite;
 }
 void Piece::SetTexture(Sprite sp)
 {
