@@ -54,6 +54,7 @@ Color Piece::GetColour()
 void Piece::SetColour(Color c)
 {
 	Colour = c;
+	sprite.setColor(c);
 }
 bool Piece::GetTargeted()
 {
