@@ -11,12 +11,13 @@ Player::Player()
 {
   
 }
-Player::Player(int ID, int Nr, string name, bool c)
+Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
 {
   this->ID=ID;
   this->NrOfWins=Nr;
   this->Name = name;
   this->Concede = c;
+
   pieces[0] = new Pawn(Vector2f(0,480),false,sprite,Color::White);
   pieces[1] = new Pawn(Vector2f(80, 480), false, sprite, Color::White);
   pieces[2] = new Pawn(Vector2f(160, 480), false, sprite, Color::White);
@@ -38,7 +39,7 @@ void Player::ResetPieces(int i)
 {
   
 }
-void Player::PlayTurn()
+void Player::PlayTurn(RenderWindow* window)
 {
   Vector2f previouspos;
   bool Playturn = false;
@@ -46,18 +47,18 @@ void Player::PlayTurn()
   {
   	if(Mouse::isButtonPressed(Mouse::Right))
     	{
-      		Vector2i mousePosition = sf::Mouse::getPosition(window);
+      	Vector2i mousePosition = sf::Mouse::getPosition(*window);
 		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
 		for (int i = 0; i < 16; i++)
 		{
 			int x = (int)mousePositionFloat.x / 80;
 			int y = (int)mousePositionFloat.y / 80;
-			pos = pieces[i]->GetPosition();
-			if (x * 80 == (int)pos.x && (int)pos.y == y * 80)
+			previouspos = pieces[i]->GetPosition();
+			if (x * 80 == (int)previouspos.x && (int)previouspos.y == y * 80)
 			{
 				pieces[i]->SetTargeted(true);
 			}
-			if ((x * 80 != (int)pos.x || (int)pos.y != y * 80) && pieces[i]->GetTargeted() == true)
+			if ((x * 80 != (int)previouspos.x || (int)previouspos.y != y * 80) && pieces[i]->GetTargeted() == true)
 			{
 				pieces[i]->SetTargeted(false);
 			}
@@ -65,16 +66,16 @@ void Player::PlayTurn()
 	}
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
-		Vector2i mousePosition = sf::Mouse::getPosition(window);
+		Vector2i mousePosition = sf::Mouse::getPosition(*window);
 		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
 		for (int i = 0; i < 16; i++)
 		{
-			if (pieces->GetTargeted() == true)
+			if (pieces[i]->GetTargeted() == true)
 			{
 				previouspos = pieces[i]->GetPosition();
 				if (previouspos != pieces[i]->Move(mousePositionFloat))
 				{
-					playerturn = true;
+					Playturn = true;
 				}
 			}
 		}
@@ -90,8 +91,9 @@ void Player::PlayTurn()
 		}
 	}
     }
-  }
+ 
 }
+
 int Player::GetID()
 {
   return this->ID;

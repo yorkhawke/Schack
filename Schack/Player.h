@@ -15,13 +15,14 @@ private:
 	string Name;
 	bool Concede;
 	Piece* pieces[16];
+
 public:
 	//Functions
 	Player();
-	Player(int,int,string,bool);
+	Player(int,int,string,bool,Sprite);
 	~Player();
 	void ResetPieces(int i);
-	void PlayTurn();
+	void PlayTurn(RenderWindow* window);
 	//Get/Set functions
 	int GetID();
 	void SetID(int);

@@ -13,12 +13,16 @@ class Match
 {
 private:
 	//Attributes
+	bool game = { true };
+	Player p1;
+	Player p2;
 
 public:
 	//Functions
 	Match();
 	~Match();
-	void PlayMatch(Player p1,Player p2,int nrM);
+	void PlayMatch(RenderWindow* win);
+
 	//Get/Set functions
 };
 #endif

@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "System.h"
 #include "Match.h"
-#include "Player.h"
 
 int SCRWIDTH = 800;
 int SCRHEIGHT = 660;
@@ -13,8 +12,6 @@ int main()
 {
 	Match aMatch;
 	RenderWindow window;
-	Player p1;
-	Player p2;
 	Texture backTex,PlayB,CloseB;
 	window.create(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "Schack");
 
@@ -47,27 +44,26 @@ int main()
 	{
 		Event event;
 		Mouse mousePos;
+		window.clear();
+		window.draw(backSprite);
+		window.draw(PlaySprite);
+		window.draw(CloseSprite);
 
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window.close();
 		}
+
 		if (PlaySprite.getGlobalBounds().contains(mousePos.getPosition(window).x, mousePos.getPosition(window).y)&&Mouse::isButtonPressed(Mouse::Left))
 		{
-
+			aMatch.PlayMatch(&window);
 		}
 
 		if (CloseSprite.getGlobalBounds().contains(mousePos.getPosition(window).x, mousePos.getPosition(window).y) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			return 0;
 		}
-
-		window.clear();
-
-		window.draw(backSprite);
-		window.draw(PlaySprite);
-		window.draw(CloseSprite);
 
 		window.display();
 	}
