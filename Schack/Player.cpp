@@ -44,41 +44,51 @@ void Player::PlayTurn()
   bool Playturn = false;
   while(!Playturn)
   {
-    if(Mouse::isButtonPressed(Mouse::Right))
-    {
-      	Vector2i mousePosition = sf::Mouse::getPosition(window);
-				Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-				for (int i = 0; i < 16; i++)
-				{
-					int x = (int)mousePositionFloat.x / 80;
-					int y = (int)mousePositionFloat.y / 80;
-					pos = pieces[i]->GetPosition();
-					if (x * 80 == (int)pos.x && (int)pos.y == y * 80)
-					{
-						pieces[i]->SetTargeted(true);
-					}
-					if ((x * 80 != (int)pos.x || (int)pos.y != y * 80) && pieces[i]->GetTargeted() == true)
-					{
-						pieces[i]->SetTargeted(false);
-					}
-				}
-			}
-			if (Mouse::isButtonPressed(Mouse::Left))
+  	if(Mouse::isButtonPressed(Mouse::Right))
+    	{
+      		Vector2i mousePosition = sf::Mouse::getPosition(window);
+		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+		for (int i = 0; i < 16; i++)
+		{
+			int x = (int)mousePositionFloat.x / 80;
+			int y = (int)mousePositionFloat.y / 80;
+			pos = pieces[i]->GetPosition();
+			if (x * 80 == (int)pos.x && (int)pos.y == y * 80)
 			{
-				Vector2i mousePosition = sf::Mouse::getPosition(window);
-				Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-				for (int i = 0; i < 16; i++)
+				pieces[i]->SetTargeted(true);
+			}
+			if ((x * 80 != (int)pos.x || (int)pos.y != y * 80) && pieces[i]->GetTargeted() == true)
+			{
+				pieces[i]->SetTargeted(false);
+			}
+		}
+	}
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		Vector2i mousePosition = sf::Mouse::getPosition(window);
+		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+		for (int i = 0; i < 16; i++)
+		{
+			if (pieces->GetTargeted() == true)
+			{
+				previouspos = pieces[i]->GetPosition();
+				if (previouspos != pieces[i]->Move(mousePositionFloat))
 				{
-					if (pieces->GetTargeted() == true)
-					{
-						previouspos = pieces[i]->GetPosition();
-						if (previouspos != pieces[i]->Move(mousePositionFloat))
-						{
-							playerturn = true;
-						}
-					}
+					playerturn = true;
 				}
 			}
+		}
+	}
+	if(Playturn)
+	{
+		for(int i = 0; i<16;i++)
+		{
+			if(pieces[i]->GetTargeted())
+			{
+				pieces[i]->SetTargeted(false);
+			}
+		}
+	}
     }
   }
 }
