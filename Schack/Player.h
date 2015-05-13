@@ -21,7 +21,7 @@ public:
 	Player();
 	Player(int,int,string,bool,Sprite);
 	~Player();
-	void ResetPieces(int i);
+	void ResetPieces(bool);
 	void PlayTurn(RenderWindow* window);
 	//Get/Set functions
 	int GetID();

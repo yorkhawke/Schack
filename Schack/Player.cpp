@@ -35,9 +35,9 @@ Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
   pieces[14] = new King(Vector2f(240, 560), false, sprite, Color::White);
   pieces[15] = new Queen(Vector2f(320, 560), false, sprite, Color::White);
 }
-void Player::ResetPieces(int i)
+void Player::ResetPieces(bool col)
 {
-  
+
 }
 void Player::PlayTurn(RenderWindow* window)
 {

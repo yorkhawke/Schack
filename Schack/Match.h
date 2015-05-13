@@ -14,8 +14,6 @@ class Match
 private:
 	//Attributes
 	bool game = { true };
-	Player p1;
-	Player p2;
 
 public:
 	//Functions
