@@ -47,7 +47,7 @@ void Player::ResetPieces(bool col)
 			pieces[i]->SetPosition(pos);
 			pieces[i]->SetColour(Color::White);
 			pos.x+=80;
-			if(i==80)
+			if(pos.x<560)
 			{
 				pos.y+=80;
 				pos.x=0;
@@ -62,7 +62,7 @@ void Player::ResetPieces(bool col)
 			pieces[i]->SetPosition(pos);
 			pieces[i]->SetColour(Color::Black);
 			pos.x += 80;
-			if (i == 8)
+			if (pos.x <560)
 			{
 				pos.y -= 80;
 				pos.x = 0;
