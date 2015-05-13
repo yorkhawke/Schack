@@ -45,6 +45,7 @@ void Player::ResetPieces(bool col)
 		{
 			pieces[i]->SetPosition(pos);
 			pieces[i]->SetColour(Color::White);
+			pos.x+=80;
 			if(i==80)
 			{
 				pos.y+=80;
