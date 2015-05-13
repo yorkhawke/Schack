@@ -37,6 +37,36 @@ Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
 }
 void Player::ResetPieces(bool col)
 {
+	Vector2f pos;
+	if(col)
+	{
+		pos=Vector2f(0,480);
+		for(int i = 0; i < 16 ; i++)
+		{
+			pieces[i]->SetPosition(pos);
+			pieces[i]->SetColour(Color::White);
+			if(i==80)
+			{
+				pos.y+=80;
+				pos.x=0;
+			}
+		}
+	}
+	else
+	{
+		pos = Vector2f(0,80);
+		for (int i = 0; i < 16; i++)
+		{
+			pieces[i]->SetPostion(pos);
+			pieces[i]->SetColour(Color::Black);
+			pos.x += 80;
+			if (i == 8)
+			{
+				pos.y -= 80;
+				pos.x = 0;
+			}
+		}
+	}
 
 }
 void Player::PlayTurn(RenderWindow* window)
