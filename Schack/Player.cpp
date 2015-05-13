@@ -73,57 +73,64 @@ void Player::ResetPieces(bool col)
 }
 void Player::PlayTurn(RenderWindow* window)
 {
-  Vector2f previouspos;
-  bool Playturn = false;
-  while(!Playturn)
-  {
-  	if(Mouse::isButtonPressed(Mouse::Right))
-    	{
-      	Vector2i mousePosition = sf::Mouse::getPosition(*window);
-		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-		for (int i = 0; i < 16; i++)
-		{
-			int x = (int)mousePositionFloat.x / 80;
-			int y = (int)mousePositionFloat.y / 80;
-			previouspos = pieces[i]->GetPosition();
-			if (x * 80 == (int)previouspos.x && (int)previouspos.y == y * 80)
-			{
-				pieces[i]->SetTargeted(true);
-			}
-			if ((x * 80 != (int)previouspos.x || (int)previouspos.y != y * 80) && pieces[i]->GetTargeted() == true)
-			{
-				pieces[i]->SetTargeted(false);
-			}
-		}
-	}
-	if (Mouse::isButtonPressed(Mouse::Left))
+	Event ev;
+	Vector2f previouspos;
+	bool Playturn = false;
+	while (!Playturn)
 	{
-		Vector2i mousePosition = sf::Mouse::getPosition(*window);
-		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-		for (int i = 0; i < 16; i++)
+		if (Mouse::isButtonPressed(Mouse::Right))
 		{
-			if (pieces[i]->GetTargeted() == true)
+			Vector2i mousePosition = sf::Mouse::getPosition(*window);
+			Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+			for (int i = 0; i < 16; i++)
 			{
+				int x = (int)mousePositionFloat.x / 80;
+				int y = (int)mousePositionFloat.y / 80;
 				previouspos = pieces[i]->GetPosition();
-				if (previouspos != pieces[i]->Move(mousePositionFloat))
+				if (x * 80 == (int)previouspos.x && (int)previouspos.y == y * 80)
 				{
-					Playturn = true;
+					pieces[i]->SetTargeted(true);
+				}
+				if ((x * 80 != (int)previouspos.x || (int)previouspos.y != y * 80) && pieces[i]->GetTargeted() == true)
+				{
+					pieces[i]->SetTargeted(false);
 				}
 			}
 		}
-	}
-	if(Playturn)
-	{
-		for(int i = 0; i<16;i++)
+		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if(pieces[i]->GetTargeted())
+			Vector2i mousePosition = sf::Mouse::getPosition(*window);
+			Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+			for (int i = 0; i < 16; i++)
 			{
-				pieces[i]->SetTargeted(false);
+				if (pieces[i]->GetTargeted() == true)
+				{
+					previouspos = pieces[i]->GetPosition();
+					if (previouspos != pieces[i]->Move(mousePositionFloat))
+					{
+						Playturn = true;
+					}
+				}
 			}
 		}
+		if (Playturn)
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				if (pieces[i]->GetTargeted())
+				{
+					pieces[i]->SetTargeted(false);
+				}
+			}
+		}
+		window->pollEvent(ev);
+		if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
+		{
+			window->close();
+			Playturn = true;
+		}
+
 	}
-    }
- 
 }
 
 int Player::GetID()
