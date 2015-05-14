@@ -3,8 +3,6 @@
 
 // Includes
 #include <iostream>
-
-#include "System.h"
 #include "Input.h"
 #include "Player.h"
 #include "Square.h"
