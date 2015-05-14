@@ -15,6 +15,7 @@ private:
 	string Name;
 	bool Concede;
 	Piece* pieces[16];
+	Vector2f PreviousPosition;
 
 public:
 	//Functions
@@ -35,5 +36,7 @@ public:
 	Sprite GetPieceTexture(int);
 	void RenderPieces(RenderWindow*);
 	void ResetCol();
+	Vector2f GetPreviousPosition();
+	void CheckTakenOut(Vector2f);
 };
 #endif

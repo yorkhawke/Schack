@@ -12,7 +12,6 @@ Match::~Match()
 
 void Match::PlayMatch(RenderWindow* win)
 {
-
 	Sprite Sp1, Sp2;
 	Sprite sprite;
 	Texture tex;
@@ -70,6 +69,7 @@ void Match::PlayMatch(RenderWindow* win)
 	Event ev;
 	bool turn=true;
 	bool keft = false;
+	Vector2f PreviousPos;
 	while (win->isOpen())
 	{
 
@@ -96,6 +96,8 @@ void Match::PlayMatch(RenderWindow* win)
 					turn = false;
 					keft = false;
 					p1.ResetCol();
+					PreviousPos = p1.GetPreviousPosition();
+					p2.CheckTakenOut(PreviousPos);
 				}
 			}
 			else
@@ -106,6 +108,8 @@ void Match::PlayMatch(RenderWindow* win)
 					turn = true;
 					keft = false;
 					p2.ResetCol();
+					PreviousPos = p2.GetPreviousPosition();
+					p1.CheckTakenOut(PreviousPos);
 				}
 			}
 		}

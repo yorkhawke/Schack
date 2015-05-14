@@ -86,12 +86,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>J:\TredProgrammeringen\Projektet\Schack\Schack\include;C:\Users\Per\Documents\GitHub\Schack\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SFML\SFML-2.3\include;J:\TredProgrammeringen\Projektet\Schack\Schack\include;C:\Users\Per\Documents\GitHub\Schack\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Per\Documents\GitHub\Schack\SFML-2.3\lib;J:\TredProgrammeringen\Projektet\Schack\SFML-2.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SFML\SFML-2.3\lib;C:\Users\Per\Documents\GitHub\Schack\SFML-2.3\lib;J:\TredProgrammeringen\Projektet\Schack\SFML-2.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-d.lib;sfml-main-d.lib;sfml-system-d.lib;sfml-graphics-d.lib;opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
