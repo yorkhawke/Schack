@@ -71,29 +71,33 @@ void Player::ResetPieces(bool col)
 	}
 
 }
-void Player::PlayTurn(RenderWindow* window)
+bool Player::PlayTurn(RenderWindow* window,bool keft)
 {
 	Event ev;
 	Vector2f previouspos;
 	bool Playturn = false;
 	while (!Playturn)
 	{
-		if (Mouse::isButtonPressed(Mouse::Right))
+		if (!keft)
 		{
-			Vector2i mousePosition = sf::Mouse::getPosition(*window);
-			Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-			for (int i = 0; i < 16; i++)
+			if (Mouse::isButtonPressed(Mouse::Right))
 			{
-				int x = (int)mousePositionFloat.x / 80;
-				int y = (int)mousePositionFloat.y / 80;
-				previouspos = pieces[i]->GetPosition();
-				if (x * 80 == (int)previouspos.x && (int)previouspos.y == y * 80)
+				Vector2i mousePosition = sf::Mouse::getPosition(*window);
+				Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+				for (int i = 0; i < 16; i++)
 				{
-					pieces[i]->SetTargeted(true);
-				}
-				if ((x * 80 != (int)previouspos.x || (int)previouspos.y != y * 80) && pieces[i]->GetTargeted() == true)
-				{
-					pieces[i]->SetTargeted(false);
+					int x = (int)mousePositionFloat.x / 80;
+					int y = (int)mousePositionFloat.y / 80;
+					previouspos = pieces[i]->GetPosition();
+					if (x * 80 == (int)previouspos.x && (int)previouspos.y == y * 80)
+					{
+						pieces[i]->SetTargeted(true);
+						return false;
+					}
+					if ((x * 80 != (int)previouspos.x || (int)previouspos.y != y * 80) && pieces[i]->GetTargeted() == true)
+					{
+						pieces[i]->SetTargeted(false);
+					}
 				}
 			}
 		}
@@ -108,21 +112,13 @@ void Player::PlayTurn(RenderWindow* window)
 					previouspos = pieces[i]->GetPosition();
 					if (previouspos != pieces[i]->Move(mousePositionFloat))
 					{
+						return true;
 						Playturn = true;
 					}
 				}
 			}
 		}
-		if (Playturn)
-		{
-			for (int i = 0; i < 16; i++)
-			{
-				if (pieces[i]->GetTargeted())
-				{
-					pieces[i]->SetTargeted(false);
-				}
-			}
-		}
+
 		window->pollEvent(ev);
 		if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
 		{
@@ -131,6 +127,18 @@ void Player::PlayTurn(RenderWindow* window)
 		}
 
 	}
+}
+
+void Player::ResetCol()
+{
+	for (int i = 0; i < 16; i++)
+	{
+		if (pieces[i]->GetTargeted())
+		{
+			pieces[i]->SetTargeted(false);
+		}
+	}
+
 }
 
 int Player::GetID()

@@ -69,6 +69,7 @@ void Match::PlayMatch(RenderWindow* win)
 
 	Event ev;
 	bool turn=true;
+	bool keft = false;
 	while (win->isOpen())
 	{
 
@@ -89,13 +90,23 @@ void Match::PlayMatch(RenderWindow* win)
 
 			if (turn)
 			{
-				p1.PlayTurn(win);
-				turn = false;
+				keft = p1.PlayTurn(win, keft);
+				if (keft)
+				{
+					turn = false;
+					keft = false;
+					p1.ResetCol();
+				}
 			}
 			else
 			{
-				p2.PlayTurn(win);
-				turn = true;
+				keft=p2.PlayTurn(win,keft);
+				if (keft)
+				{
+					turn = true;
+					keft = false;
+					p2.ResetCol();
+				}
 			}
 		}
 

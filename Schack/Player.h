@@ -22,7 +22,7 @@ public:
 	Player(int,int,string,bool,Sprite);
 	~Player();
 	void ResetPieces(bool);
-	void PlayTurn(RenderWindow* window);
+	bool PlayTurn(RenderWindow* window,bool);
 	//Get/Set functions
 	int GetID();
 	void SetID(int);
@@ -34,5 +34,6 @@ public:
 	void SetConcede(bool);
 	Sprite GetPieceTexture(int);
 	void RenderPieces(RenderWindow*);
+	void ResetCol();
 };
 #endif
