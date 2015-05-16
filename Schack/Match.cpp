@@ -98,7 +98,7 @@ void Match::PlayMatch(RenderWindow* win)
 					p1.ResetCol();
 					PreviousPos = p1.GetPreviousPosition();
 					p2.CheckTakenOut(PreviousPos);
-					p2.KingIsDead(12);
+					p2.KingIsDead();
 				}
 			}
 			else
@@ -111,7 +111,7 @@ void Match::PlayMatch(RenderWindow* win)
 					p2.ResetCol();
 					PreviousPos = p2.GetPreviousPosition();
 					p1.CheckTakenOut(PreviousPos);
-					p1.KingIsDead(12);
+					p1.KingIsDead();
 				}
 			}
 		}
