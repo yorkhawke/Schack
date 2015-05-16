@@ -26,7 +26,7 @@ int main()
 	if (!CloseB.loadFromFile("Close.png"))
 		return 1;
 	Sprite CloseSprite(CloseB);
-
+	//Sets the positions of the Sprites
 	FloatRect backBound = backSprite.getGlobalBounds();
 	FloatRect CloseBound = CloseSprite.getGlobalBounds();
 	FloatRect PlayBound = PlaySprite.getGlobalBounds();
@@ -41,6 +41,7 @@ int main()
 
 	while (window.isOpen())
 	{
+		//Drawing the meny
 		Event event;
 		Mouse mousePos;
 		window.clear();
@@ -56,6 +57,7 @@ int main()
 
 		if (PlaySprite.getGlobalBounds().contains(mousePos.getPosition(window).x, mousePos.getPosition(window).y)&&Mouse::isButtonPressed(Mouse::Left))
 		{
+			//When Play is pressed enters to start the match.
 			aMatch.PlayMatch(&window);
 		}
 

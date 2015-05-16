@@ -11,7 +11,7 @@ Player::Player()
 	Concede = false;
   
 }
-Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
+Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)//Creates the player Default Color is White
 {
   this->ID=ID;
   this->NrOfWins=Nr;
@@ -36,13 +36,13 @@ Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
   pieces[15] = new Rook(Vector2f(560, 560), true, sprite, Color::White);
 
 }
-void Player::ResetPieces(bool col)
+void Player::ResetPieces(bool col)//Resets the pieces to their default positions also used to change the Color of the players Pieces.
 {
 	Vector2f pos;
 	if(col)
 	{
 		pos=Vector2f(0,480);
-		for(int i = 0; i < 16 ; i++)
+		for(int i = 0; i < 16 ; i++)//If col is true the player is white else it is black.
 		{
 			pieces[i]->SetPosition(pos);
 			pieces[i]->SetColour(Color::White);
@@ -76,9 +76,9 @@ bool Player::PlayTurn(RenderWindow* window,bool keft)
 	Event ev;
 	Vector2f previouspos;
 	bool Playturn = false;
-	while (!Playturn)
+	while (!Playturn)//Loops until player targets.
 	{
-		if (!keft)
+		if (!keft)//Used when the player wants to target a piece. if true a player has already targeted a piece and will move on the the next step.
 		{
 			if (Mouse::isButtonPressed(Mouse::Right))
 			{
@@ -120,7 +120,7 @@ bool Player::PlayTurn(RenderWindow* window,bool keft)
 			}
 		}
 
-		window->pollEvent(ev);
+		window->pollEvent(ev);//basic exit event.
 		if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
 		{
 			window->close();
@@ -142,7 +142,7 @@ void Player::ResetCol()
 
 }
 
-int Player::GetID()
+int Player::GetID()//Just basic set and get functions
 {
   return this->ID;
 }
@@ -174,7 +174,7 @@ void Player::SetConcede(bool c)
 {
   this->Concede = c;
 }
-void Player::RenderPieces(RenderWindow* win)
+void Player::RenderPieces(RenderWindow* win)//Renders the pieces if they are active
 {
 	for (int i = 0; i < 16; i++)
 	{
@@ -197,7 +197,7 @@ void Player::CheckTakenOut(Vector2f position)
 		}
 	}
 }
-bool Player::KingIsDead()
+bool Player::KingIsDead()// Checks the king if its dead or alive.
 {
 	if (pieces[12]->GetState() == false)
 	{

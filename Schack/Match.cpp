@@ -18,6 +18,7 @@ void Match::PlayMatch(RenderWindow* win)
 	Font font;
 	bool endOfGame=false;
 	Text winText;
+	//Loading Texture and Font
 	if (!font.loadFromFile("OptimusPrinceps.ttf"))
 	{
 		win->close();
@@ -26,13 +27,14 @@ void Match::PlayMatch(RenderWindow* win)
 	{
 		win->close();
 	}
+	//Positioning Text
 	FloatRect Tr = winText.getLocalBounds();
 	winText.setOrigin(Tr.left + Tr.width / 2.0f, Tr.top + Tr.height / 2.0f);
 	winText.setPosition(Vector2f(300, 300));
 	winText.setFont(font);
 	Sp1.setTexture(tex);
 	Sp2.setTexture(tex);
-
+	//Creating players
 	Player p1(1, 0, "Player 1", false, Sp1);
 	Player p2(2, 0, "Player 2", false, Sp2);
 
@@ -45,6 +47,7 @@ void Match::PlayMatch(RenderWindow* win)
 	Vector2f pos(0, 0);
 	Square Board[64];
 
+	//Drawing the board
 	bool o = false;
 	for (int i = 0; i < 64; i++)
 	{
@@ -81,13 +84,14 @@ void Match::PlayMatch(RenderWindow* win)
 	bool turn=true;
 	bool keft = false;
 	Vector2f PreviousPos;
+	//Starting the match loop, in Tournament class we could have a attribute that makes this loop 3 times and then decide the winner... it felt unneccesary atm.
 	while (win->isOpen())
 	{
 		while (win->pollEvent(ev))
 		{
 			if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
 				win->close();
-
+			//Rendering the pieces and the board
 			win->clear();
 			for (int i = 0; i < 64; i++)
 			{
@@ -96,7 +100,7 @@ void Match::PlayMatch(RenderWindow* win)
 			p1.RenderPieces(win);
 			p2.RenderPieces(win);
 			win->display();
-
+			//gives player1 the first turn becuase player one is by default the white player.
 			if (turn)
 			{
 				keft = p1.PlayTurn(win, keft);
@@ -107,6 +111,7 @@ void Match::PlayMatch(RenderWindow* win)
 					p1.ResetCol();
 					PreviousPos = p1.GetPreviousPosition();
 					p2.CheckTakenOut(PreviousPos);
+					//When Player2 king has died enters here and shows the ending screen. Likewise for player1...
 					if (p2.KingIsDead())
 					{
 						while (!endOfGame)
