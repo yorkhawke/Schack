@@ -15,13 +15,24 @@ void Match::PlayMatch(RenderWindow* win)
 	Sprite Sp1, Sp2;
 	Sprite sprite;
 	Texture tex;
+	Font font;
+	bool endOfGame=false;
+	Text winText;
+	if (!font.loadFromFile("OptimusPrinceps.ttf"))
+	{
+		win->close();
+	}
 	if (!tex.loadFromFile("Pieces2.png"))
 	{
-
+		win->close();
 	}
-
+	FloatRect Tr = winText.getLocalBounds();
+	winText.setOrigin(Tr.left + Tr.width / 2.0f, Tr.top + Tr.height / 2.0f);
+	winText.setPosition(Vector2f(300, 300));
+	winText.setFont(font);
 	Sp1.setTexture(tex);
 	Sp2.setTexture(tex);
+
 	Player p1(1, 0, "Player 1", false, Sp1);
 	Player p2(2, 0, "Player 2", false, Sp2);
 
@@ -72,7 +83,6 @@ void Match::PlayMatch(RenderWindow* win)
 	Vector2f PreviousPos;
 	while (win->isOpen())
 	{
-
 		while (win->pollEvent(ev))
 		{
 			if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
@@ -87,7 +97,6 @@ void Match::PlayMatch(RenderWindow* win)
 			p2.RenderPieces(win);
 			win->display();
 
-
 			if (turn)
 			{
 				keft = p1.PlayTurn(win, keft);
@@ -98,7 +107,20 @@ void Match::PlayMatch(RenderWindow* win)
 					p1.ResetCol();
 					PreviousPos = p1.GetPreviousPosition();
 					p2.CheckTakenOut(PreviousPos);
-					p2.KingIsDead();
+					if (p2.KingIsDead())
+					{
+						while (!endOfGame)
+						{
+							winText.setString("Player 1 Wins\n Press Y to quit");
+							win->clear();
+							win->draw(winText);
+							win->display();
+							if (Keyboard::isKeyPressed(Keyboard::Y))
+								win->close();
+
+
+						}
+					}
 				}
 			}
 			else
@@ -111,10 +133,27 @@ void Match::PlayMatch(RenderWindow* win)
 					p2.ResetCol();
 					PreviousPos = p2.GetPreviousPosition();
 					p1.CheckTakenOut(PreviousPos);
-					p1.KingIsDead();
+					if (p1.KingIsDead())
+					{
+						while (endOfGame==false)
+						{
+
+							winText.setString("Player 2 Wins/n Press Y to quit");
+							win->clear();
+							win->draw(winText);
+							win->display();
+							if (Keyboard::isKeyPressed(Keyboard::Y))
+								win->close();
+
+
+						}
+
+					}
 				}
 			}
+
 		}
+
 
 	}
 

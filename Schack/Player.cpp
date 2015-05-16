@@ -8,6 +8,7 @@ Player::~Player()
 }
 Player::Player()
 {
+	Concede = false;
   
 }
 Player::Player(int ID, int Nr, string name, bool c,Sprite sprite)
