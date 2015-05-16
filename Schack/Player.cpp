@@ -5,7 +5,7 @@ using namespace std;
 using namespace sf;
 Player::~Player()
 {
-  
+	delete pieces;
 }
 Player::Player()
 {
@@ -196,4 +196,12 @@ void Player::CheckTakenOut(Vector2f position)
 			pieces[i]->SetState(false);
 		}
 	}
+}
+bool Player::KingIsDead(int i)
+{
+	if (pieces[i]->GetState() == false)
+	{
+		return true;
+	}
+	else return false;
 }

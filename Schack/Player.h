@@ -38,5 +38,6 @@ public:
 	void ResetCol();
 	Vector2f GetPreviousPosition();
 	void CheckTakenOut(Vector2f);
+	bool KingIsDead(int);
 };
 #endif

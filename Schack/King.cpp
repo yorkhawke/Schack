@@ -11,6 +11,7 @@ King::King()
 {
 
 }
+
 King::King(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 {
 	sprite.setTextureRect(IntRect(165, 0, 75, 80));
